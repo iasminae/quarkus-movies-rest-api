@@ -1,5 +1,7 @@
 package model;
 
+import javax.persistence.Enumerated;
+
 public enum Genre {
 
     HORROR("Horror", "Films in the horror genre are calculated to cause intense repugnance, fear, " +
@@ -24,7 +26,7 @@ public enum Genre {
     private final String name;
     private final String description;
 
-    private Genre(String name, String description) {
+    Genre(String name, String description) {
         this.name = name;
         this.description = description;
     }

@@ -1,17 +1,24 @@
 package controller;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import model.Genre;
+
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.Arrays;
+import java.util.List;
 
 @Path("/genres")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class GenreController {
     @GET
-    public String getAllGenres() {
-        return "Wow, this is gonna be a lot of genres";
+    public List<Genre> getAllGenres() {
+        return  Arrays.asList(Genre.values());
+    }
+
+    @GET
+    @Path("/{genre}")
+    public String getGenreDescription(@PathParam("genre") String genre) {
+        return Genre.valueOf(genre).getDescription();
     }
 }
