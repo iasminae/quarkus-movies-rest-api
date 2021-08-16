@@ -1,5 +1,6 @@
 package controller;
 
+import io.quarkus.hibernate.reactive.panache.common.runtime.ReactiveTransactional;
 import io.smallrye.mutiny.Uni;
 import model.Genre;
 import model.Movie;
@@ -43,13 +44,13 @@ public class MovieController {
     }
 
     @POST
-    @Transactional
+    @ReactiveTransactional
     public Uni<Movie> addMovie(Movie movie) {
-        return movieRepository.persist(movie);
+        return movie.persistAndFlush();
     }
 
     @DELETE
-    @Transactional
+    @ReactiveTransactional
     public Uni<Void> deleteMovie(Movie movie) {
         return movieRepository.delete(movie);
     }

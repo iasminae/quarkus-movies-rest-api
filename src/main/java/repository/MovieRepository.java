@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 
 import java.util.List;
 
-@Transactional
+@ApplicationScoped
 public class MovieRepository implements PanacheRepository<Movie> {
 
     public Uni<List<Movie>> findByGenre(Genre genre) {
