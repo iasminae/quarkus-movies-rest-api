@@ -21,7 +21,6 @@ public class MovieController {
 
     @GET
     public Uni<List<Movie>> getAllMovies() {
-        //return Movie.listAll(); -- this also works
         return movieRepository.findAllMovies();
     }
 
@@ -38,15 +37,14 @@ public class MovieController {
     }
 
     @GET
-    @Path("/{title}")
-    public Uni<Movie> getMovie(@PathParam("title") String title) {
-        return movieRepository.findByTitle(title);
+    @Path("/{id}")
+    public Uni<Movie> getMovie(@PathParam("id") Long id) {
+        return movieRepository.findMovieById(id);
     }
 
     @POST
     @Transactional
     public Uni<Movie> addMovie(Movie movie) {
-        // return Movie.persist(movie); -- this also works
         return movieRepository.persist(movie);
     }
 

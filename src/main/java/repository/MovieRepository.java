@@ -7,15 +7,12 @@ import model.Genre;
 import model.Movie;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.transaction.Transactional;
 
 import java.util.List;
 
-@ApplicationScoped
+@Transactional
 public class MovieRepository implements PanacheRepository<Movie> {
-
-    public Uni<Movie> findByTitle(String title) {
-        return find("title", title).firstResult();
-    }
 
     public Uni<List<Movie>> findByGenre(Genre genre) {
         return find("genre", genre).list();
@@ -23,5 +20,9 @@ public class MovieRepository implements PanacheRepository<Movie> {
 
     public Uni<List<Movie>> findAllMovies() {
         return Movie.listAll();
+    }
+
+    public Uni<Movie> findMovieById(Long id) {
+        return findById(id);
     }
 }
